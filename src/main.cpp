@@ -1,11 +1,14 @@
-#include "src/frame/G5cApp.h"
-#include "src/frame/G5cMainWin.h"
+#include "src/frame/App.h"
+#include "src/frame/MainWindow.h"
 
 int main(int argc, char* argv[])
 {
-    g5c::frame::G5cApp app(argc, argv);
+    g5c::frame::App app(argc, argv);
 
-    g5c::frame::G5cMainWin win;
+    g5c::frame::MainWindow win;
+
+    //    win.registerFuncWidget();
+
     win.show();
 
     return app.exec();
