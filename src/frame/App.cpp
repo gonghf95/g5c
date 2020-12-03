@@ -9,14 +9,15 @@ App::App(int &argc, char **argv)
     initData();
 }
 
-bool App::eventFilter(QObject *, QEvent *)
+bool App::eventFilter(QObject *watched, QEvent *event)
 {
+    return QApplication::eventFilter(watched, event);
 }
 
 void App::initData()
 {
     QTextCodec *codec = QTextCodec::codecForName("UTF-8");
-    QTextCodec::setCodecForTr(codec);
+//    QTextCodec::setCodecForTr(codec);
     QTextCodec::setCodecForLocale(codec);
-    QTextCodec::setCodecForCStrings(codec);
+//    QTextCodec::setCodecForCStrings(codec);
 }

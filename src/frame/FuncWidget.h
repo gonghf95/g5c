@@ -17,7 +17,7 @@ class FuncWidget : public QWidget
 public:
     FuncWidget(MainWindow* win, FUNC_ID func_id);
 
-    FUNC_ID fundId() const { return funcId_; }
+    FUNC_ID funcId() const { return funcId_; }
 
     virtual void active(const QMap<QString, QVariant> &args);
     virtual void inactive();

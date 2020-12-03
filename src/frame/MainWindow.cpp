@@ -67,10 +67,10 @@ bool MainWindow::switchTo(FUNC_ID func_id, const QMap<QString, QVariant> &args)
         }
         else
         {
-            activeFuncWidget_->destroy();
+            activeFuncWidget_->deleteLater();
         }
 
-        funcWidgets_ = func_widget;
+        activeFuncWidget_ = func_widget;
     }
 
     activeFuncWidget_->active(args);
