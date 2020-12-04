@@ -1,10 +1,11 @@
 #include "src/frame/FuncWidget.h"
-
-using namespace g5c::frame;
+#include "src/frame/MainWindow.h"
 
 FuncWidget::FuncWidget(MainWindow *win, FUNC_ID func_id)
-    : window_(win),
-      funcId_(func_id)
+    : QWidget(win),
+      window_(win),
+      funcId_(func_id),
+      keepAlive_(true)
 {
 }
 

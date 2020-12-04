@@ -5,15 +5,10 @@
 
 #include <QWidget>
 
-namespace g5c
-{
-
-namespace frame
-{
-
 class MainWindow;
 class FuncWidget : public QWidget
 {
+    Q_OBJECT
 public:
     FuncWidget(MainWindow* win, FUNC_ID func_id);
 
@@ -23,11 +18,11 @@ public:
     virtual void inactive();
     virtual bool canSwitch();
 
-    void setKeepAlive(bool alive) { keepAlive_ = alive; }
     bool keepAlive() const { return keepAlive_; }
+    void setKeepAlive(bool alive) { keepAlive_ = alive; }
 
 protected:
-    MainWindow* mainWin() const { return window_; }
+    MainWindow* mainWindow() const { return window_; }
 
 private:
     MainWindow* window_;
@@ -38,11 +33,7 @@ private:
 class FuncWidgetCreator
 {
 public:
-    virtual FuncWidget* create(const QMap<QString, QVariant> &args) = 0;
+    virtual FuncWidget* create(MainWindow*) = 0;
 };
-
-} // namespace frame
-
-} // namespace g5c
 
 #endif /* G5_FRAME_FUNCWIN_H */

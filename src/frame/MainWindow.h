@@ -7,16 +7,14 @@
 #include <QMap>
 #include <QVariant>
 
-namespace g5c
-{
-
-namespace frame
-{
+#define WIN_DEFAULT_WIDTH 480
+#define WIN_DEFAULT_HEIGHT 320
 
 class FuncWidget;
 class FuncWidgetCreator;
 class MainWindow : public QMainWindow
 {
+    Q_OBJECT
 public:
     explicit MainWindow(QWidget* parent = 0);
 
@@ -25,18 +23,13 @@ public:
     bool switchTo(FUNC_ID func_id);
     bool switchTo(FUNC_ID func_id, const QMap<QString, QVariant> &args);
 
-    // FUNC_ID activeFuncId() const { return activeFuncId_; }
-
+	
 private:
-    FuncWidget* createFuncWidget(FUNC_ID, const QMap<QString, QVariant>&);
+    FuncWidget* createFuncWidget(FUNC_ID);
 
     FuncWidget* activeFuncWidget_;
     QMap<FUNC_ID, FuncWidgetCreator*> funcWidgetCreators_;
     QMap<FUNC_ID, FuncWidget*> funcWidgets_;
 };
-
-} // namespace frame
-
-} // namespace g5c
 
 #endif /* G5C_FRAME_MAINWINDOW_H */

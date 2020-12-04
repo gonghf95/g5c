@@ -14,12 +14,16 @@ SOURCES += src/main.cpp \
     src/frame/App.cpp \
     src/frame/MainWindow.cpp \
     src/frame/FuncWidget.cpp \
-    src/app/settings/WinSettings.cpp \
-    src/app/test/WinTest.cpp
+    src/app/settings/SettingsFunc.cpp \
+    src/app/test/TestFunc.cpp
 
 HEADERS  += src/frame/App.h \
     src/frame/MainWindow.h \
     src/frame/FuncWidget.h \
     src/app/FuncId.h \
-    src/app/settings/WinSettings.h \
-    src/app/test/WinTest.h
+    src/app/settings/SettingsFunc.h \
+    src/app/test/TestFunc.h
+
+FORMS += \
+    src/app/test/TestFunc.ui \
+    src/app/settings/SettingsFunc.ui

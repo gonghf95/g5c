@@ -1,12 +1,11 @@
 #include "src/frame/MainWindow.h"
 #include "src/frame/FuncWidget.h"
 
-using namespace g5c::frame;
-
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
+    : QMainWindow(parent),
+      activeFuncWidget_(NULL)
 {
-
+    resize(WIN_DEFAULT_WIDTH, WIN_DEFAULT_HEIGHT);
 }
 
 void MainWindow::registerFuncWidget(FUNC_ID func_id, FuncWidgetCreator *creator)
@@ -28,9 +27,9 @@ bool MainWindow::switchTo(FUNC_ID func_id)
 
 bool MainWindow::switchTo(FUNC_ID func_id, const QMap<QString, QVariant> &args)
 {
-    if(activeFuncWidget_ == NULL)
+    if(!activeFuncWidget_)
     {
-        activeFuncWidget_ = createFuncWidget(func_id, args);
+        activeFuncWidget_ = createFuncWidget(func_id);
         if(!activeFuncWidget_)
         {
             return false;
@@ -52,32 +51,34 @@ bool MainWindow::switchTo(FUNC_ID func_id, const QMap<QString, QVariant> &args)
     {
         func_widget = funcWidgets_[func_id];
     }
-    else
+
+    if(!func_widget)
     {
-        func_widget = createFuncWidget(func_id, args);
+        func_widget = createFuncWidget(func_id);
         if(!func_widget)
             return false;
     }
 
-    if(activeFuncWidget_)
+    if(activeFuncWidget_->keepAlive())
     {
-        if(activeFuncWidget_->keepAlive())
-        {
-            activeFuncWidget_->inactive();
-        }
-        else
-        {
-            activeFuncWidget_->deleteLater();
-        }
-
-        activeFuncWidget_ = func_widget;
+        activeFuncWidget_->inactive();
+    }
+    else
+    {
+        activeFuncWidget_->deleteLater();
     }
 
+    activeFuncWidget_ = func_widget;
     activeFuncWidget_->active(args);
 
     return true;
 }
 
-FuncWidget *MainWindow::createFuncWidget(FUNC_ID, const QMap<QString, QVariant> &)
+FuncWidget *MainWindow::createFuncWidget(FUNC_ID func_id)
 {
+    FuncWidgetCreator* creator = funcWidgetCreators_.value(func_id, NULL);
+    if(!creator)
+        return NULL;
+
+    return creator->create(this);
 }

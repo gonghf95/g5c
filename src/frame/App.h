@@ -4,12 +4,6 @@
 #include <QApplication>
 #include <QEvent>
 
-namespace g5c
-{
-
-namespace frame
-{
-
 class App : public QApplication
 {
 public:
@@ -21,9 +15,5 @@ protected:
 private:
     void initData();
 };
-
-} // namespace frame
-
-} // namespace g5c
 
 #endif /* G5C_FRAME_APP_H */
