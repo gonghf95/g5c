@@ -12,6 +12,7 @@ SettingsFunc::SettingsFunc(MainWindow *window)
 {
     ui->setupUi(this);
 
+    initData();
     initUI();
     initConnect();
 }
@@ -19,6 +20,11 @@ SettingsFunc::SettingsFunc(MainWindow *window)
 void SettingsFunc::slotSwitchButtonClicked()
 {
     mainWindow()->switchTo(FUNC_ID_TEST);
+}
+
+void SettingsFunc::initData()
+{
+    setKeepAlive(false);
 }
 
 void SettingsFunc::initUI()

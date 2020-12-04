@@ -12,6 +12,7 @@ TestFunc::TestFunc(MainWindow *window)
 {
     ui->setupUi(this);
 
+    initData();
     initUI();
     initConnect();
 }
@@ -21,11 +22,16 @@ void TestFunc::slotSwitchButtonClicked()
     mainWindow()->switchTo(FUNC_ID_SETTINGS);
 }
 
+void TestFunc::initData()
+{
+
+}
+
 void TestFunc::initUI()
 {
 }
 
 void TestFunc::initConnect()
 {
-    connect(ui->btn_switch, SIGNAL(clicked()), SLOT(slotSwitchButtonClicked()));
+    connect(ui->btn_switch, SIGNAL(clicked()), this, SLOT(slotSwitchButtonClicked()));
 }

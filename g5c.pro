@@ -15,14 +15,17 @@ SOURCES += src/main.cpp \
     src/frame/MainWindow.cpp \
     src/frame/FuncWidget.cpp \
     src/app/settings/SettingsFunc.cpp \
-    src/app/test/TestFunc.cpp
+    src/app/test/TestFunc.cpp \
+    src/public/Logger.cpp
 
 HEADERS  += src/frame/App.h \
     src/frame/MainWindow.h \
     src/frame/FuncWidget.h \
+    src/public/Common.h \
     src/app/FuncId.h \
     src/app/settings/SettingsFunc.h \
-    src/app/test/TestFunc.h
+    src/app/test/TestFunc.h \
+    src/public/Logger.h
 
 FORMS += \
     src/app/test/TestFunc.ui \

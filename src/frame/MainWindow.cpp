@@ -1,5 +1,6 @@
 #include "src/frame/MainWindow.h"
 #include "src/frame/FuncWidget.h"
+#include "src/public/Logger.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
@@ -70,6 +71,8 @@ bool MainWindow::switchTo(FUNC_ID func_id, const QMap<QString, QVariant> &args)
 
     activeFuncWidget_ = func_widget;
     activeFuncWidget_->active(args);
+
+    LOG_INFO(QString("Switch to: %1").arg(activeFuncWidget_->funcId()));
 
     return true;
 }

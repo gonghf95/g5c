@@ -11,6 +11,7 @@ class TestFunc;
 
 class TestFunc : public FuncWidget
 {
+    Q_OBJECT
 public:
     explicit TestFunc(MainWindow*);
 
@@ -18,6 +19,7 @@ private slots:
     void slotSwitchButtonClicked();
 
 private:
+    void initData();
     void initUI();
     void initConnect();
 

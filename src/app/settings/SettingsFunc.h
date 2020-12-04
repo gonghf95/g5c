@@ -12,6 +12,7 @@ class SettingsFunc;
 class MainWindow;
 class SettingsFunc : public FuncWidget
 {
+    Q_OBJECT
 public:
     explicit SettingsFunc(MainWindow* window);
 
@@ -19,6 +20,7 @@ private slots:
     void slotSwitchButtonClicked();
 
 private:
+    void initData();
     void initUI();
     void initConnect();
 
