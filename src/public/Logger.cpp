@@ -32,11 +32,13 @@ void print_log(Logger::LOG_LEVEL level,
                const QString& func_name, const QString& msg)
 {
     QString time = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");
-    qDebug() << time << " [" << level_str(level) << "] " << func_name << " " << msg << endl;
+    QString current_thread_id = QString::number(quint64(QThread::currentThreadId()),16);
+    QString  log = QString("%1 [%2][0x%3][%4]%5\n").arg(time, level_str(level), current_thread_id, func_name, msg);
+    qDebug() << log.toStdString().c_str();
 }
 }
 
 void Logger::info(const QString &func_name, const QString &msg)
 {
-    detail::print_log(LOG_LEVEL::INFO, func_name, msg);
+    detail::print_log(INFO, func_name, msg);
 }
