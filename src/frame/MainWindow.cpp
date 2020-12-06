@@ -1,12 +1,23 @@
 #include "src/frame/MainWindow.h"
+#include "src/frame/LeftBar.h"
 #include "src/frame/FuncWidget.h"
 #include "src/public/Logger.h"
 
+#include <QDesktopWidget>
+#include <QApplication>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
-      activeFuncWidget_(NULL)
+      activeFuncWidget_(NULL),
+      leftBar_(new LeftBar(this))
 {
-    resize(WIN_DEFAULT_WIDTH, WIN_DEFAULT_HEIGHT);
+    initUI();
+    initConnect();
+}
+
+MainWindow::~MainWindow()
+{
+    delete leftBar_;
 }
 
 void MainWindow::registerFuncWidget(FUNC_ID func_id, FuncWidgetCreator *creator)
@@ -75,6 +86,20 @@ bool MainWindow::switchTo(FUNC_ID func_id, const QMap<QString, QVariant> &args)
     LOG_INFO(QString("Switch to: %1").arg(activeFuncWidget_->funcId()));
 
     return true;
+}
+
+void MainWindow::initUI()
+{
+    QDesktopWidget *desktop = QApplication::desktop();
+    int startX = (desktop->width() - WIN_DEFAULT_WIDTH)/2;
+    int startY = (desktop->height() - WIN_DEFAULT_HEIGHT)/2;
+    setGeometry(startX, startY, WIN_DEFAULT_WIDTH, WIN_DEFAULT_HEIGHT);
+    setFixedSize(WIN_DEFAULT_WIDTH, WIN_DEFAULT_HEIGHT);
+}
+
+void MainWindow::initConnect()
+{
+
 }
 
 FuncWidget *MainWindow::createFuncWidget(FUNC_ID func_id)

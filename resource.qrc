@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resource/image/chat_pressed.png</file>
+        <file>resource/image/chat_normal.png</file>
+        <file>resource/image/avatar_default.png</file>
+        <file>resource/image/contact_pressed.png</file>
+        <file>resource/image/contact_normal.png</file>
+        <file>resource/image/more.png</file>
+        <file>resource/image/favourite_normal.png</file>
+        <file>resource/image/favourite_pressed.png</file>
+        <file>resource/image/files.png</file>
+        <file>resource/image/top_stories.png</file>
+        <file>resource/image/mini_program.png</file>
+        <file>resource/image/phone.png</file>
+    </qresource>
+</RCC>

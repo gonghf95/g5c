@@ -5,12 +5,18 @@
 
 #include <QWidget>
 
+#define FUNCWIDGET_START_X 60
+#define FUNCWIDGET_START_Y 0
+#define FUNCWIDGET_DEFAULT_WIDTH 799
+#define FUNCWIDGET_DEFAULT_HEIGHT 584
+
 class MainWindow;
 class FuncWidget : public QWidget
 {
     Q_OBJECT
 public:
     FuncWidget(MainWindow* win, FUNC_ID func_id);
+    virtual ~FuncWidget();
 
     FUNC_ID funcId() const { return funcId_; }
 

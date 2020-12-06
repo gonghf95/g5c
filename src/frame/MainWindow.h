@@ -7,9 +7,10 @@
 #include <QMap>
 #include <QVariant>
 
-#define WIN_DEFAULT_WIDTH 480
-#define WIN_DEFAULT_HEIGHT 320
+#define WIN_DEFAULT_WIDTH 859
+#define WIN_DEFAULT_HEIGHT 584
 
+class LeftBar;
 class FuncWidget;
 class FuncWidgetCreator;
 class MainWindow : public QMainWindow
@@ -17,6 +18,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 public:
     explicit MainWindow(QWidget* parent = 0);
+    virtual ~MainWindow();
 
     void registerFuncWidget(FUNC_ID, FuncWidgetCreator*);
 
@@ -25,11 +27,15 @@ public:
 
 	
 private:
+    void initUI();
+    void initConnect();
     FuncWidget* createFuncWidget(FUNC_ID);
 
     FuncWidget* activeFuncWidget_;
     QMap<FUNC_ID, FuncWidgetCreator*> funcWidgetCreators_;
     QMap<FUNC_ID, FuncWidget*> funcWidgets_;
+
+    LeftBar* leftBar_;
 };
 
 #endif /* G5C_FRAME_MAINWINDOW_H */

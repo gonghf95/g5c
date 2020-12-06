@@ -7,6 +7,12 @@ FuncWidget::FuncWidget(MainWindow *win, FUNC_ID func_id)
       funcId_(func_id),
       keepAlive_(true)
 {
+    setGeometry(FUNCWIDGET_START_X, FUNCWIDGET_START_Y, FUNCWIDGET_DEFAULT_WIDTH, FUNCWIDGET_DEFAULT_HEIGHT);
+}
+
+FuncWidget::~FuncWidget()
+{
+
 }
 
 void FuncWidget::active(const QMap<QString, QVariant> &)

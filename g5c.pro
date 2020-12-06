@@ -12,6 +12,7 @@ TEMPLATE = app
 
 SOURCES += src/main.cpp \
     src/frame/App.cpp \
+    src/frame/LeftBar.cpp \
     src/frame/MainWindow.cpp \
     src/frame/FuncWidget.cpp \
     src/app/settings/SettingsFunc.cpp \
@@ -19,6 +20,7 @@ SOURCES += src/main.cpp \
     src/public/Logger.cpp
 
 HEADERS  += src/frame/App.h \
+    src/frame/LeftBar.h \
     src/frame/MainWindow.h \
     src/frame/FuncWidget.h \
     src/public/Common.h \
@@ -29,4 +31,8 @@ HEADERS  += src/frame/App.h \
 
 FORMS += \
     src/app/test/TestFunc.ui \
-    src/app/settings/SettingsFunc.ui
+    src/app/settings/SettingsFunc.ui \
+    src/frame/LeftBar.ui
+
+RESOURCES += \
+    resource.qrc
