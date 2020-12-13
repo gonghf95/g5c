@@ -1,4 +1,5 @@
 #include "src/app/settings/SettingsFunc.h"
+#include "src/app/FuncId.h"
 #include "ui_SettingsFunc.h"
 
 FuncWidget *SettingsFuncCreator::create(MainWindow *window)

@@ -20,7 +20,7 @@ MainWindow::~MainWindow()
     delete leftBar_;
 }
 
-void MainWindow::registerFuncWidget(FUNC_ID func_id, FuncWidgetCreator *creator)
+void MainWindow::registerFuncWidget(int func_id, FuncWidgetCreator *creator)
 {
     if(creator == NULL)
         return ;
@@ -31,13 +31,13 @@ void MainWindow::registerFuncWidget(FUNC_ID func_id, FuncWidgetCreator *creator)
     }
 }
 
-bool MainWindow::switchTo(FUNC_ID func_id)
+bool MainWindow::switchTo(int func_id)
 {
     QMap<QString, QVariant> args;
     return switchTo(func_id, args);
 }
 
-bool MainWindow::switchTo(FUNC_ID func_id, const QMap<QString, QVariant> &args)
+bool MainWindow::switchTo(int func_id, const QMap<QString, QVariant> &args)
 {
     if(!activeFuncWidget_)
     {
@@ -102,7 +102,7 @@ void MainWindow::initConnect()
 
 }
 
-FuncWidget *MainWindow::createFuncWidget(FUNC_ID func_id)
+FuncWidget *MainWindow::createFuncWidget(int func_id)
 {
     FuncWidgetCreator* creator = funcWidgetCreators_.value(func_id, NULL);
     if(!creator)

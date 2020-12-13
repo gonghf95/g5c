@@ -257,10 +257,10 @@ border:none;
    <property name="autoRepeat">
     <bool>false</bool>
    </property>
-   <property name="iconVisibleInMenu">
-    <bool>false</bool>
+   <property name="visible">
+    <bool>true</bool>
    </property>
-   <property name="shortcutVisibleInContextMenu">
+   <property name="iconVisibleInMenu">
     <bool>false</bool>
    </property>
   </action>
@@ -275,9 +275,6 @@ border:none;
     <bool>true</bool>
    </property>
    <property name="iconVisibleInMenu">
-    <bool>false</bool>
-   </property>
-   <property name="shortcutVisibleInContextMenu">
     <bool>false</bool>
    </property>
   </action>
@@ -295,9 +292,6 @@ border:none;
     <bool>false</bool>
    </property>
    <property name="iconVisibleInMenu">
-    <bool>false</bool>
-   </property>
-   <property name="shortcutVisibleInContextMenu">
     <bool>false</bool>
    </property>
   </action>

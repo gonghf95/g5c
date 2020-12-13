@@ -1,4 +1,4 @@
-#include "src/frame/App.h"
+#include "src/frame/Application.h"
 #include "src/frame/MainWindow.h"
 #include "src/app/FuncId.h"
 #include "src/app/test/TestFunc.h"
@@ -6,7 +6,7 @@
 
 int main(int argc, char* argv[])
 {
-    App app(argc, argv);
+    Application app(argc, argv);
 
     MainWindow win;
     win.registerFuncWidget(FUNC_ID_TEST, new TestFuncCreator);

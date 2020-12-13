@@ -1,4 +1,5 @@
 #include "src/app/test/TestFunc.h"
+#include "src/app/FuncId.h"
 #include "ui_TestFunc.h"
 
 FuncWidget* TestFuncCreator::create(MainWindow *window)
