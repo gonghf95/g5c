@@ -18,6 +18,7 @@ SOURCES += src/main.cpp \
     src/frame/MainWindow.cpp \
     src/frame/FuncWidget.cpp \
     src/frame/WorkWidget.cpp \
+    src/app/default/DefaultFunc.cpp \
     src/app/settings/SettingsFunc.cpp \
     src/app/test/TestFunc.cpp \
     src/public/Logger.cpp
@@ -29,6 +30,7 @@ HEADERS  += src/frame/Application.h \
     src/frame/WorkWidget.h \
     src/public/Common.h \
     src/app/FuncId.h \
+    src/app/default/DefaultFunc.h \
     src/app/settings/SettingsFunc.h \
     src/app/test/TestFunc.h \
     src/public/Logger.h

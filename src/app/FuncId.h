@@ -3,6 +3,7 @@
 
 enum FUNC_ID
 {
+    FUNC_ID_DEFAULT,
 	FUNC_ID_TEST,
 	FUNC_ID_SETTINGS
 };

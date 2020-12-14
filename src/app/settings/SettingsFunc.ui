@@ -28,8 +28,8 @@
   <widget class="QPushButton" name="btn_switch">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>140</y>
+     <x>30</x>
+     <y>160</y>
      <width>191</width>
      <height>27</height>
     </rect>

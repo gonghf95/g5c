@@ -11,6 +11,7 @@ WorkWidget::WorkWidget(MainWindow *win, int func_id)
 
     setPalette(palette);
     setGeometry(WORKWIDGET_START_X, WORKWIDGET_START_Y, WORKWIDGET_DEFAULT_WIDTH, WORKWIDGET_DEFAULT_HEIGHT);
+    setAutoFillBackground(true);
 }
 
 WorkWidget::~WorkWidget()
