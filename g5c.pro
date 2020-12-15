@@ -21,7 +21,9 @@ SOURCES += src/main.cpp \
     src/app/default/DefaultFunc.cpp \
     src/app/settings/SettingsFunc.cpp \
     src/app/test/TestFunc.cpp \
-    src/public/Logger.cpp
+    src/public/Logger.cpp \
+    src/widget/ChatList.cpp \
+    src/widget/ChatListItemDelegate.cpp
 
 HEADERS  += src/frame/Application.h \
     src/frame/LeftBar.h \
@@ -33,7 +35,9 @@ HEADERS  += src/frame/Application.h \
     src/app/default/DefaultFunc.h \
     src/app/settings/SettingsFunc.h \
     src/app/test/TestFunc.h \
-    src/public/Logger.h
+    src/public/Logger.h \
+    src/widget/ChatList.h \
+    src/widget/ChatListItemDelegate.h
 
 FORMS += \
     src/app/test/TestFunc.ui \
