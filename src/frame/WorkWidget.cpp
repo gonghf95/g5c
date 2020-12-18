@@ -6,6 +6,8 @@ WorkWidget::WorkWidget(MainWindow *win, int func_id)
     : FuncWidget(win, func_id)
 {
 
+    isWorkWidget_ = true;
+
     QPalette palette(this->palette());
     palette.setColor(QPalette::Background, QColor(231, 230, 230));
 

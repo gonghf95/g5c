@@ -13,6 +13,7 @@ int main(int argc, char* argv[])
     win.registerFuncWidget(FUNC_ID_DEFAULT, new DefaultFuncCreator);
     win.registerFuncWidget(FUNC_ID_TEST, new TestFuncCreator);
     win.registerFuncWidget(FUNC_ID_SETTINGS, new SettingsFuncCreator);
+    win.switchTo(FUNC_ID_DEFAULT);
     win.switchTo(FUNC_ID_TEST);
     win.show();
 

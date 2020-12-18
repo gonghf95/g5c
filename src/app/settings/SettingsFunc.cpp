@@ -1,6 +1,7 @@
 #include "src/app/settings/SettingsFunc.h"
 #include "src/app/FuncId.h"
 #include "ui_SettingsFunc.h"
+#include "src/public/Logger.h"
 
 FuncWidget *SettingsFuncCreator::create(MainWindow *window)
 {
@@ -16,6 +17,10 @@ SettingsFunc::SettingsFunc(MainWindow *window)
     initData();
     initUI();
     initConnect();
+}
+
+SettingsFunc::~SettingsFunc()
+{
 }
 
 void SettingsFunc::slotSwitchButtonClicked()

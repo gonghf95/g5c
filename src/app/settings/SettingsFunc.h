@@ -15,6 +15,7 @@ class SettingsFunc : public FuncWidget
     Q_OBJECT
 public:
     explicit SettingsFunc(MainWindow* window);
+    virtual ~SettingsFunc();
 
 private slots:
     void slotSwitchButtonClicked();

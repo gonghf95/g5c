@@ -8,8 +8,9 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
+      leftBar_(new LeftBar(this)),
       activeFuncWidget_(NULL),
-      leftBar_(new LeftBar(this))
+      activeWorkWidget_(NULL)
 {
     initUI();
     initConnect();
@@ -39,53 +40,20 @@ bool MainWindow::switchTo(int func_id)
 
 bool MainWindow::switchTo(int func_id, const QMap<QString, QVariant> &args)
 {
-    if(!activeFuncWidget_)
-    {
-        activeFuncWidget_ = createFuncWidget(func_id);
-        if(!activeFuncWidget_)
-        {
-            return false;
-        }
-
-        activeFuncWidget_->hide();
-        activeFuncWidget_->active(args);
-        return true;
-    }
-
-    if(activeFuncWidget_->funcId() == func_id)
-        return true;
-
-    if(!activeFuncWidget_->canSwitch())
-        return false;
-
-    FuncWidget* func_widget = NULL;
-    if(funcWidgets_.contains(func_id))
-    {
-        func_widget = funcWidgets_[func_id];
-    }
-
+    FuncWidget* func_widget = createFuncWidget(func_id);
     if(!func_widget)
     {
-        func_widget = createFuncWidget(func_id);
-        if(!func_widget)
-            return false;
+        return false;
     }
 
-    if(activeFuncWidget_->keepAlive())
+    /// WorkWidget
+    if(func_widget->isWorkWidget())
     {
-        activeFuncWidget_->inactive();
-    }
-    else
-    {
-        activeFuncWidget_->deleteLater();
+        return switchTo(&activeWorkWidget_, &func_widget, args);
     }
 
-    activeFuncWidget_ = func_widget;
-    activeFuncWidget_->active(args);
-
-    LOG_INFO(QString("Switch to: %1").arg(activeFuncWidget_->funcId()));
-
-    return true;
+    /// FuncWidget
+    return switchTo(&activeFuncWidget_, &func_widget, args);
 }
 
 void MainWindow::initUI()
@@ -104,9 +72,52 @@ void MainWindow::initConnect()
 
 FuncWidget *MainWindow::createFuncWidget(int func_id)
 {
+    if(funcWidgets_.contains(func_id) &&
+            funcWidgets_[func_id])
+    {
+        return funcWidgets_[func_id];
+    }
+
     FuncWidgetCreator* creator = funcWidgetCreators_.value(func_id, NULL);
     if(!creator)
+    {
         return NULL;
+    }
 
-    return creator->create(this);
+    FuncWidget* new_func_widget = creator->create(this);
+    if(new_func_widget)
+    {
+        funcWidgets_[func_id] = new_func_widget;
+    }
+    return new_func_widget;
+}
+
+bool MainWindow::switchTo(FuncWidget **from, FuncWidget **to, const QMap<QString, QVariant> &args)
+{
+    if(!(*from))
+    {
+        *from = *to;
+        (*from)->active(args);
+        return true;
+    }
+
+    if((*from)->funcId() == (*to)->funcId())
+        return true;
+
+    if(!(*from)->canSwitch())
+        return false;
+
+    if((*from)->keepAlive())
+    {
+        (*from)->inactive();
+    }
+    else
+    {
+        funcWidgets_[(*from)->funcId()] = NULL;
+        (*from)->deleteLater();
+    }
+
+    *from = *to;
+    (*from)->active(args);
+    return true;
 }

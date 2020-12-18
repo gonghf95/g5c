@@ -23,6 +23,8 @@ public:
     bool keepAlive() const { return keepAlive_; }
     void setKeepAlive(bool alive) { keepAlive_ = alive; }
 
+    bool isWorkWidget() const { return isWorkWidget_; }
+
 protected:
     FuncWidget(MainWindow* win, int func_id);
     virtual ~FuncWidget();
@@ -30,9 +32,12 @@ protected:
     MainWindow* mainWindow() const { return window_; }
 
 private:
+    friend class WorkWidget;
+
     MainWindow* window_;
     int funcId_;
     bool keepAlive_;
+    bool isWorkWidget_;
 };
 
 class FuncWidgetCreator

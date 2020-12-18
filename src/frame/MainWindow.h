@@ -23,17 +23,19 @@ public:
     bool switchTo(int func_id);
     bool switchTo(int func_id, const QMap<QString, QVariant> &args);
 
-	
 private:
     void initUI();
     void initConnect();
     FuncWidget* createFuncWidget(int);
+    bool switchTo(FuncWidget** from, FuncWidget** to, const QMap<QString, QVariant>& args);
 
-    FuncWidget* activeFuncWidget_;
+    LeftBar* leftBar_;
+
     QMap<int, FuncWidgetCreator*> funcWidgetCreators_;
     QMap<int, FuncWidget*> funcWidgets_;
 
-    LeftBar* leftBar_;
+    FuncWidget* activeFuncWidget_;
+    FuncWidget* activeWorkWidget_;
 };
 
 #endif /* G5C_FRAME_MAINWINDOW_H */

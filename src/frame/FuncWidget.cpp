@@ -5,7 +5,8 @@ FuncWidget::FuncWidget(MainWindow *win, int func_id)
     : QWidget(win),
       window_(win),
       funcId_(func_id),
-      keepAlive_(true)
+      keepAlive_(true),
+      isWorkWidget_(false)
 {
     setGeometry(FUNCWIDGET_START_X, FUNCWIDGET_START_Y, FUNCWIDGET_DEFAULT_WIDTH, FUNCWIDGET_DEFAULT_HEIGHT);
 }

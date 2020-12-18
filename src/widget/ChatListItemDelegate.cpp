@@ -1,4 +1,4 @@
-#include "ChatListItemDelegate.h"
+#include "src/widget/ChatListItemDelegate.h"
 
 #include <QDebug>
 #include <QPainter>
