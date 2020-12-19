@@ -17,11 +17,11 @@ void ChatListItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
 
     if(QStyle::State_Selected & option.state)
     {
-        painter->fillRect(option.rect, QColor(235, 237, 240));
+        painter->fillRect(option.rect, QColor(210, 209, 209));
     }
     else if(QStyle::State_MouseOver & option.state)
     {
-        painter->fillRect(option.rect, QColor(245, 246, 247));
+        painter->fillRect(option.rect, QColor(196, 196, 196));
     }
 
     const QRect rect = option.rect;

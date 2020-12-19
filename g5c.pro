@@ -19,11 +19,13 @@ SOURCES += src/main.cpp \
     src/frame/FuncWidget.cpp \
     src/frame/WorkWidget.cpp \
     src/app/default/DefaultFunc.cpp \
+    src/app/chat/ChatFunc.cpp \
     src/app/settings/SettingsFunc.cpp \
     src/app/test/TestFunc.cpp \
     src/public/Logger.cpp \
     src/widget/ChatList.cpp \
-    src/widget/ChatListItemDelegate.cpp
+    src/widget/ChatListItemDelegate.cpp \
+    src/widget/ScrollBar.cpp
 
 HEADERS  += src/frame/Application.h \
     src/frame/LeftBar.h \
@@ -33,13 +35,16 @@ HEADERS  += src/frame/Application.h \
     src/public/Common.h \
     src/app/FuncId.h \
     src/app/default/DefaultFunc.h \
+    src/app/chat/ChatFunc.h \
     src/app/settings/SettingsFunc.h \
     src/app/test/TestFunc.h \
     src/public/Logger.h \
     src/widget/ChatList.h \
-    src/widget/ChatListItemDelegate.h
+    src/widget/ChatListItemDelegate.h \
+    src/widget/ScrollBar.h
 
 FORMS += \
+    src/app/chat/ChatFunc.ui \
     src/app/test/TestFunc.ui \
     src/app/settings/SettingsFunc.ui \
     src/frame/LeftBar.ui

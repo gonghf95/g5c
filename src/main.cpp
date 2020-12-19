@@ -2,6 +2,7 @@
 #include "src/frame/MainWindow.h"
 #include "src/app/FuncId.h"
 #include "src/app/default/DefaultFunc.h"
+#include "src/app/chat/ChatFunc.h"
 #include "src/app/test/TestFunc.h"
 #include "src/app/settings/SettingsFunc.h"
 
@@ -11,10 +12,11 @@ int main(int argc, char* argv[])
 
     MainWindow win;
     win.registerFuncWidget(FUNC_ID_DEFAULT, new DefaultFuncCreator);
+    win.registerFuncWidget(FUNC_ID_CHAT, new ChatFuncCreator);
     win.registerFuncWidget(FUNC_ID_TEST, new TestFuncCreator);
     win.registerFuncWidget(FUNC_ID_SETTINGS, new SettingsFuncCreator);
+    win.switchTo(FUNC_ID_CHAT);
     win.switchTo(FUNC_ID_DEFAULT);
-    win.switchTo(FUNC_ID_TEST);
     win.show();
 
     return app.exec();
