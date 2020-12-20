@@ -1,7 +1,11 @@
 #include "src/frame/MainWindow.h"
-#include "src/frame/LeftBar.h"
-#include "src/frame/FuncWidget.h"
-#include "src/public/Logger.h"
+#include "src/frame/FuncWidgetController.h"
+#include "src/app/FuncId.h"
+#include "src/common/Logger.h"
+#include "src/app/default/DefaultFunc.h"
+#include "src/app/chat/ChatFunc.h"
+#include "src/app/test/TestFunc.h"
+#include "src/app/settings/SettingsFunc.h"
 
 #include <QDesktopWidget>
 #include <QApplication>
@@ -9,115 +13,51 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
       leftBar_(new LeftBar(this)),
-      activeFuncWidget_(NULL),
-      activeWorkWidget_(NULL)
+      funcWidgetController_(new FuncWidgetController(this))
 {
-    initUI();
+    initData();
+    initUi();
     initConnect();
 }
 
 MainWindow::~MainWindow()
 {
     delete leftBar_;
+    delete funcWidgetController_;
 }
 
-void MainWindow::registerFuncWidget(int func_id, FuncWidgetCreator *creator)
+void MainWindow::slotActivePanelChanged(LeftBar::ActivePanel, const QVariant &data)
 {
-    if(creator == NULL)
-        return ;
-
-    if(!funcWidgetCreators_.contains(func_id))
-    {
-        funcWidgetCreators_.insert(func_id, creator);
-    }
+    int func_id = data.toInt();
+    funcWidgetController_->switchTo(func_id);
 }
 
-bool MainWindow::switchTo(int func_id)
+void MainWindow::initData()
 {
-    QMap<QString, QVariant> args;
-    return switchTo(func_id, args);
+    funcWidgetController_->registerFuncWidget(FUNC_ID_DEFAULT, new DefaultFuncCreator);
+    funcWidgetController_->registerFuncWidget(FUNC_ID_CHAT, new ChatFuncCreator);
+    funcWidgetController_->registerFuncWidget(FUNC_ID_TEST, new TestFuncCreator);
+    funcWidgetController_->registerFuncWidget(FUNC_ID_SETTINGS, new SettingsFuncCreator);
+
+    leftBar_->bind(LeftBar::AP_CHAT, FUNC_ID_CHAT);
+    leftBar_->bind(LeftBar::AP_CONTACT, FUNC_ID_TEST);
+    leftBar_->bind(LeftBar::AP_FAVOURITE, FUNC_ID_SETTINGS);
 }
 
-bool MainWindow::switchTo(int func_id, const QMap<QString, QVariant> &args)
-{
-    FuncWidget* func_widget = createFuncWidget(func_id);
-    if(!func_widget)
-    {
-        return false;
-    }
-
-    /// WorkWidget
-    if(func_widget->isWorkWidget())
-    {
-        return switchTo(&activeWorkWidget_, &func_widget, args);
-    }
-
-    /// FuncWidget
-    return switchTo(&activeFuncWidget_, &func_widget, args);
-}
-
-void MainWindow::initUI()
+void MainWindow::initUi()
 {
     QDesktopWidget *desktop = QApplication::desktop();
     int startX = (desktop->width() - WIN_DEFAULT_WIDTH)/2;
     int startY = (desktop->height() - WIN_DEFAULT_HEIGHT)/2;
     setGeometry(startX, startY, WIN_DEFAULT_WIDTH, WIN_DEFAULT_HEIGHT);
     setFixedSize(WIN_DEFAULT_WIDTH, WIN_DEFAULT_HEIGHT);
+
+    funcWidgetController_->switchTo(FUNC_ID_CHAT);
+    funcWidgetController_->switchTo(FUNC_ID_DEFAULT);
 }
 
 void MainWindow::initConnect()
 {
-
+    connect(leftBar_, SIGNAL(sigActivePanelChanged(LeftBar::ActivePanel, QVariant)), SLOT(slotActivePanelChanged(LeftBar::ActivePanel, QVariant)));
 }
 
-FuncWidget *MainWindow::createFuncWidget(int func_id)
-{
-    if(funcWidgets_.contains(func_id) &&
-            funcWidgets_[func_id])
-    {
-        return funcWidgets_[func_id];
-    }
-
-    FuncWidgetCreator* creator = funcWidgetCreators_.value(func_id, NULL);
-    if(!creator)
-    {
-        return NULL;
-    }
-
-    FuncWidget* new_func_widget = creator->create(this);
-    if(new_func_widget)
-    {
-        funcWidgets_[func_id] = new_func_widget;
-    }
-    return new_func_widget;
-}
-
-bool MainWindow::switchTo(FuncWidget **from, FuncWidget **to, const QMap<QString, QVariant> &args)
-{
-    if(!(*from))
-    {
-        *from = *to;
-        (*from)->active(args);
-        return true;
-    }
-
-    if((*from)->funcId() == (*to)->funcId())
-        return true;
-
-    if(!(*from)->canSwitch())
-        return false;
-
-    if((*from)->keepAlive())
-    {
-        (*from)->inactive();
-    }
-    else
-    {
-        funcWidgets_[(*from)->funcId()] = NULL;
-        (*from)->deleteLater();
-    }
-
-    *from = *to;
-    (*from)->active(args);
-    return true;
-}

@@ -6,7 +6,6 @@
 
 LeftBar::LeftBar(MainWindow *parent)
     : QWidget(parent),
-      window_(parent),
       ui(new Ui::LeftBar),
       moreMenu_(new QMenu(this))
 {
@@ -22,7 +21,12 @@ LeftBar::~LeftBar()
     delete moreMenu_;
 }
 
-void LeftBar::slotPanelButtonClicked()
+void LeftBar::bind(LeftBar::ActivePanel ap, const QVariant &data)
+{
+    data_[ap] = data;
+}
+
+void LeftBar::slotItemClicked()
 {
     QPushButton *active_button = qobject_cast<QPushButton*>(sender());
     if(active_button == ui->btn_chat)
@@ -76,10 +80,10 @@ void LeftBar::initUI()
 
 void LeftBar::initConnect()
 {
-    connect(ui->btn_chat, SIGNAL(clicked()), SLOT(slotPanelButtonClicked()));
-    connect(ui->btn_contact, SIGNAL(clicked()), SLOT(slotPanelButtonClicked()));
-    connect(ui->btn_favourite, SIGNAL(clicked()), SLOT(slotPanelButtonClicked()));
-    connect(ui->btn_more, SIGNAL(clicked()), SLOT(slotPanelButtonClicked()));
+    connect(ui->btn_chat, SIGNAL(clicked()), SLOT(slotItemClicked()));
+    connect(ui->btn_contact, SIGNAL(clicked()), SLOT(slotItemClicked()));
+    connect(ui->btn_favourite, SIGNAL(clicked()), SLOT(slotItemClicked()));
+    connect(ui->btn_more, SIGNAL(clicked()), SLOT(slotItemClicked()));
 }
 
 void LeftBar::updateActivePanelState(LeftBar::ActivePanel new_active_panel)
@@ -109,5 +113,5 @@ void LeftBar::updateActivePanelState(LeftBar::ActivePanel new_active_panel)
     ui->btn_favourite->setIcon(QIcon(file_path_favourite));
 
     activePanel_ = new_active_panel;
-    emit sigActivePanelChanged(activePanel_);
+    emit sigActivePanelChanged(activePanel_, data_[activePanel_]);
 }

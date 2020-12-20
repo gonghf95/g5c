@@ -14,6 +14,7 @@ TEMPLATE = app
 
 SOURCES += src/main.cpp \
     src/frame/Application.cpp \
+    src/frame/FuncWidgetController.cpp \
     src/frame/LeftBar.cpp \
     src/frame/MainWindow.cpp \
     src/frame/FuncWidget.cpp \
@@ -22,12 +23,13 @@ SOURCES += src/main.cpp \
     src/app/chat/ChatFunc.cpp \
     src/app/settings/SettingsFunc.cpp \
     src/app/test/TestFunc.cpp \
-    src/public/Logger.cpp \
+    src/common/Logger.cpp \
     src/widget/ChatList.cpp \
     src/widget/ChatListItemDelegate.cpp \
     src/widget/ScrollBar.cpp
 
 HEADERS  += src/frame/Application.h \
+    src/frame/FuncWidgetController.h \
     src/frame/LeftBar.h \
     src/frame/MainWindow.h \
     src/frame/FuncWidget.h \
@@ -38,13 +40,14 @@ HEADERS  += src/frame/Application.h \
     src/app/chat/ChatFunc.h \
     src/app/settings/SettingsFunc.h \
     src/app/test/TestFunc.h \
-    src/public/Logger.h \
+    src/common/Logger.h \
     src/widget/ChatList.h \
     src/widget/ChatListItemDelegate.h \
     src/widget/ScrollBar.h
 
 FORMS += \
     src/app/chat/ChatFunc.ui \
+    src/app/default/DefaultFunc.ui \
     src/app/test/TestFunc.ui \
     src/app/settings/SettingsFunc.ui \
     src/frame/LeftBar.ui

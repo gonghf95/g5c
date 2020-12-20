@@ -23,5 +23,5 @@ void ChatFunc::active(const QMap<QString, QVariant> &args)
 {
     FuncWidget::active(args);
 
-
+    ui->edt_search->addAction(ui->actionSerach, QLineEdit::LeadingPosition);
 }

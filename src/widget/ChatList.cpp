@@ -18,11 +18,6 @@ ChatList::ChatList(QWidget *parent)
     model->setStringList(list);
 
     QString style = "QListView{background-color:rgb(230,230,230); border:none;}";
-    style += "QScrollBar{width: 8px; background: rgb(230,230,230);}";
-    style += "QScrollBar::handle:vertical{background-color:rgb(185,185,185);border-radius:4px;}";
-    style += "QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical{background-color:transparent;}";
-    style += "QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical{background-color:transparent;}";
-    //style += "QScrollBar::handle:vertical:hover{background-color:rgb(185,185,185);border-radius:4px;}";
 
     setModel(model);
     setItemDelegate(delegate_);

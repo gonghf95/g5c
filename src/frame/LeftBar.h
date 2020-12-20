@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QMenu>
+#include <QVariant>
 
 #define LEFTBAR_DEFAULT_WIDTH 60
 #define LEFTBAR_DEFAULT_HEIGHT 584
@@ -32,14 +33,13 @@ public:
     ActivePanel activePanel() const
     { return activePanel_; }
 
-signals:
-    void sigActivePanelChanged(LeftBar::ActivePanel);
+    void bind(ActivePanel ap, const QVariant& data);
 
-protected:
-    MainWindow* mainWindow() { return window_; }
+signals:
+    void sigActivePanelChanged(LeftBar::ActivePanel, const QVariant& data);
 
 private slots:
-    void slotPanelButtonClicked();
+    void slotItemClicked();
 
 private:
     void initUI();
@@ -47,9 +47,9 @@ private:
 
     void updateActivePanelState(ActivePanel);
 
-    MainWindow* window_;
     Ui::LeftBar* ui;
     ActivePanel activePanel_;
+    QMap<ActivePanel, QVariant> data_;
 
     QMenu* moreMenu_;
 };

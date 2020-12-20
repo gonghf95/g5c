@@ -8,6 +8,11 @@ FuncWidget::FuncWidget(MainWindow *win, int func_id)
       keepAlive_(true),
       isWorkWidget_(false)
 {
+    QPalette palette(this->palette());
+    palette.setColor(QPalette::Background, QColor(231, 230, 230));
+
+    setPalette(palette);
+    setAutoFillBackground(true);
     setGeometry(FUNCWIDGET_START_X, FUNCWIDGET_START_Y, FUNCWIDGET_DEFAULT_WIDTH, FUNCWIDGET_DEFAULT_HEIGHT);
 }
 

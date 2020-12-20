@@ -12,5 +12,8 @@
         <file>resource/image/top_stories.png</file>
         <file>resource/image/mini_program.png</file>
         <file>resource/image/phone.png</file>
+        <file>resource/image/add.png</file>
+        <file>resource/image/search.png</file>
+        <file>resource/image/logo.png</file>
     </qresource>
 </RCC>
