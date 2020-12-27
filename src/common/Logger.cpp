@@ -4,7 +4,8 @@
 #include <QDateTime>
 #include <QThread>
 
-namespace detail {
+namespace detail
+{
 QString level_str(Logger::LOG_LEVEL level)
 {
     QString str;
@@ -41,4 +42,12 @@ void print_log(Logger::LOG_LEVEL level,
 void Logger::info(const QString &func_name, const QString &msg)
 {
     detail::print_log(INFO, func_name, msg);
+}
+
+void LOG_INFO(const char *tag, const char *fmt, ...)
+{
+    char buf[256];
+    va_list ap;
+    qvsnprintf(buf, sizeof(buf), fmt, ap);
+    Logger::info(tag, buf);
 }

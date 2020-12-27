@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ChatListFunc</class>
+ <widget class="QWidget" name="ChatListFunc">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>250</width>
+    <height>580</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="ChatList" name="chatlist">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>80</y>
+     <width>250</width>
+     <height>501</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="edt_search">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>30</y>
+     <width>161</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>Search</string>
+   </property>
+   <property name="clearButtonEnabled">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_add">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>30</y>
+     <width>25</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/resource/image/add.png</normaloff>:/resource/image/add.png</iconset>
+   </property>
+  </widget>
+  <action name="actionSerach">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/resource/image/search.png</normaloff>:/resource/image/search.png</iconset>
+   </property>
+   <property name="text">
+    <string>Serach</string>
+   </property>
+   <property name="toolTip">
+    <string>Search</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ChatList</class>
+   <extends>QListView</extends>
+   <header>src/widget/ChatList.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../../../resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>

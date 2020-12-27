@@ -19,6 +19,9 @@ public:
     explicit MainWindow(QWidget* parent = 0);
     virtual ~MainWindow();
 
+    bool switchTo(int func_id);
+    bool switchTo(int func_id, const QMap<QString, QVariant> &args);
+
 private slots:
     void slotActivePanelChanged(LeftBar::ActivePanel, const QVariant& data);
 

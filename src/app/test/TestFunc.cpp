@@ -20,6 +20,7 @@ TestFunc::TestFunc(MainWindow *window)
 
 void TestFunc::slotSwitchButtonClicked()
 {
+    mainWindow()->switchTo(FUNC_ID_CHAT);
 }
 
 void TestFunc::initData()

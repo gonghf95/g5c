@@ -45,17 +45,17 @@ void ChatListItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
     painter->setPen(pen);
 
     // name
-    QRect name(QPoint(rect.x() + 60, rect.y() + 12), QSize(60, 18));
+    QRect name(QPoint(rect.x() + 60, rect.y() + 12), QSize(140, 18));
     painter->drawText(name, text);
 
     painter->restore();
 
     // time
-    QRect time(QPoint(rect.width() - 45, rect.y() + 12), QSize(40, 18));
+    QRect time(QPoint(rect.x() + 200, rect.y() + 12), QSize(40, 18));
     painter->drawText(time, now);
 
     // content
-    QRect content(QPoint(rect.x() + 60, rect.y() + 36), QSize(135, 20));
+    QRect content(QPoint(rect.x() + 60, rect.y() + 36), QSize(140, 20));
     painter->drawText(content, "[image]xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 }
 

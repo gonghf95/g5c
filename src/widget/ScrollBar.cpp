@@ -7,8 +7,9 @@ ScrollBar::ScrollBar(QWidget *parent)
     animation_->setDuration(380);
     animation_->setEasingCurve(QEasingCurve::InOutCubic);
 
-    QString style = "QScrollBar{width: 8px; background: rgb(230,230,230);}";
-    style += "QScrollBar::handle:vertical{background-color:rgb(185,185,185);border-radius:4px;}";
+    QString style = "QScrollBar{width: 8px; background: transparent;}";
+    style += "QScrollBar::handle:vertical{background-color:rgb(215,216,217);border-radius:4px;}";
+    style += "QScrollBar::handle:vertical:hover{background-color:rgb(198,198,198);border-radius:4px;}";
     style += "QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical{background-color:transparent;}";
     style += "QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical{background-color:transparent;}";
     setStyleSheet(style);

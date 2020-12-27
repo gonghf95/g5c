@@ -2,7 +2,7 @@
 #include "src/frame/MainWindow.h"
 #include "src/app/FuncId.h"
 #include "src/app/default/DefaultFunc.h"
-#include "src/app/chat/ChatFunc.h"
+#include "src/app/chat/ChatListFunc.h"
 #include "src/app/test/TestFunc.h"
 #include "src/app/settings/SettingsFunc.h"
 

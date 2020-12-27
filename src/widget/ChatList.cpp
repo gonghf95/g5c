@@ -1,12 +1,12 @@
 #include "src/widget/ChatList.h"
 #include "src/widget/ChatListItemDelegate.h"
 #include "src/widget/ScrollBar.h"
+#include "src/common/Logger.h"
 
 #include <QScrollBar>
 #include <QStringListModel>
 
-ChatList::ChatList(QWidget *parent)
-    : QListView(parent),
+ChatList::ChatList(QWidget *parent) : QListView(parent),
       delegate_(new ChatListItemDelegate(this)),
       scrollBar_(new ScrollBar(this))
 {
@@ -24,9 +24,20 @@ ChatList::ChatList(QWidget *parent)
     setVerticalScrollMode(ScrollPerPixel);
     setStyleSheet(style);
     setVerticalScrollBar(scrollBar_);
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }
 
 ChatList::~ChatList()
 {
     delete delegate_;
+}
+
+void ChatList::enterEvent(QEvent *)
+{
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+}
+
+void ChatList::leaveEvent(QEvent *)
+{
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }

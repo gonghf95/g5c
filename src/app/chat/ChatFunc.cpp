@@ -7,9 +7,8 @@ FuncWidget *ChatFuncCreator::create(MainWindow *win)
     return new ChatFunc(win);
 }
 
-ChatFunc::ChatFunc(MainWindow *win)
-    : FuncWidget(win, FUNC_ID_CHAT),
-      ui(new Ui::ChatFunc)
+ChatFunc::ChatFunc(MainWindow *window) : WorkWidget(window, FUNC_ID_CHAT),
+    ui(new Ui::ChatFunc)
 {
     ui->setupUi(this);
 }
@@ -17,11 +16,4 @@ ChatFunc::ChatFunc(MainWindow *win)
 ChatFunc::~ChatFunc()
 {
     delete ui;
-}
-
-void ChatFunc::active(const QMap<QString, QVariant> &args)
-{
-    FuncWidget::active(args);
-
-    ui->edt_search->addAction(ui->actionSerach, QLineEdit::LeadingPosition);
 }
