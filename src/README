@@ -1,0 +1,29 @@
+directories:
+
+- app
+
+	* view layer
+
+- common
+
+	* global definetions
+
+- db
+
+	* db interface
+
+- entity
+
+	* db entity
+
+- frame
+
+	* the main framework of windown of app
+
+- net
+
+	* network interface
+
+- widget
+
+	* custom widgets
