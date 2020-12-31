@@ -23,6 +23,7 @@ SOURCES += src/main.cpp \
     src/net/NetService.cpp \
     src/entity/User.cpp \
     src/db/DbManager.cpp \
+	src/widget/NavgationLabel.cpp \
     src/widget/Chat.cpp \
     src/widget/ChatItemDelegate.cpp \
     src/widget/ChatList.cpp \
@@ -48,6 +49,7 @@ HEADERS  += src/frame/Application.h \
     src/entity/entity.h \
     src/entity/User.h \
     src/db/DbManager.h \
+	src/widget/NavgationLabel.h \
     src/widget/Chat.h \
     src/widget/ChatItemDelegate.h \
     src/widget/ChatList.h \
