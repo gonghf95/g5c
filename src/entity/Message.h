@@ -17,13 +17,13 @@ enum MESSAGE_ITEM_TYPE
     MSG_ITEM_IMAGE
 };
 
-typedef struct _message_
+typedef struct _ChatMsg_
 {
     int msg_type;
     int msg_item_type;
     QString text;
 
-} message;
-Q_DECLARE_METATYPE(message)
+} ChatMsg;
+Q_DECLARE_METATYPE(ChatMsg)
 
 #endif // ENTITY_MESSAGE_H

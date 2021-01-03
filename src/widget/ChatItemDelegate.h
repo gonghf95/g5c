@@ -1,6 +1,8 @@
 #ifndef WIDGET_CHATITEMDELEGATE_H
 #define WIDGET_CHATITEMDELEGATE_H
 
+#include "src/entity/Message.h"
+
 #include <QStyledItemDelegate>
 
 class ChatItemDelegate : public QStyledItemDelegate
@@ -15,7 +17,8 @@ protected:
     virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
 
 private:
-    void drawSys(QPainter* painter, const QStyleOptionViewItem &option) const ;
+    void drawSystemMessage(QPainter* painter, const QStyleOptionViewItem &option, const ChatMsg& msg) const;
+    void drawReceivedMessage(QPainter* painter, const QStyleOptionViewItem &option, const ChatMsg& msg) const;
 };
 
 #endif // WIDGET_CHATITEMDELEGATE_H
