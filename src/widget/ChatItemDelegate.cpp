@@ -25,6 +25,7 @@ void ChatItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
         drawSystemMessage(painter, option, msg);
         break;
     case MSG_SENT:
+        drawSentMessage(painter, option, msg);
         break;
     case MSG_RECEIVED:
         drawReceivedMessage(painter, option, msg);
@@ -58,10 +59,10 @@ QSize ChatItemDelegate::sizeHint(const QStyleOptionViewItem &option, const QMode
 
     const int width = rect.width();
     int height = fontRect.height();
-    if(height < 45)
-        height = 25;
+    if(height < 35)
+        height = 35;
 
-    return QSize(width, height+20);
+    return QSize(width, height+32);
 }
 
 void ChatItemDelegate::drawSystemMessage(QPainter *painter, const QStyleOptionViewItem &option, const ChatMsg &msg) const
@@ -75,7 +76,7 @@ void ChatItemDelegate::drawSystemMessage(QPainter *painter, const QStyleOptionVi
                              QSize(fontWidth+1, fontRect.height()));
 
     const QRect textBackgroundRect(QPoint(rect.x()+(rect.width()-fontWidth)/2, rect.y()),
-                                   QSize(fontWidth+4, rect.height()));
+                                   QSize(fontWidth+4, fontRect.height()));
 
 
     painter->save();
@@ -99,7 +100,7 @@ void ChatItemDelegate::drawReceivedMessage(QPainter *painter, const QStyleOption
     painter->setPen(Qt::black);
 
     // avatarRect
-    QRect avatarRect(QPoint(rect.x()+12, rect.y()), QSize(40, 40));
+    QRect avatarRect(QPoint(rect.x()+12, rect.y()), QSize(35, 35));
     painter->drawRect(avatarRect);
 
     painter->save();
@@ -108,22 +109,56 @@ void ChatItemDelegate::drawReceivedMessage(QPainter *painter, const QStyleOption
 
     // rectangle
     QPoint points[3] = {
-        QPoint(avatarRect.right()+5, avatarRect.y()+avatarRect.height()/2+8),
-        QPoint(avatarRect.right()+5+5, avatarRect.y()+avatarRect.height()/2+8-4),
-        QPoint(avatarRect.right()+5+5, avatarRect.y()+avatarRect.height()/2+8+4),
+        QPoint(avatarRect.right()+5, avatarRect.y()+avatarRect.height()/2+10),
+        QPoint(avatarRect.right()+5+6, avatarRect.y()+avatarRect.height()/2+10-6),
+        QPoint(avatarRect.right()+5+6, avatarRect.y()+avatarRect.height()/2+10+6),
     };
     painter->drawPolygon(points, 3);
 
-    // textRect
-    QRect textBgRect(QPoint(points[1].x(), avatarRect.y()+18), QSize(fontRect.width() + 8, fontRect.height()));
-    painter->drawRoundedRect(textBgRect, 4, 4);
+    QRect textBackgroundRect(QPoint(points[1].x(), avatarRect.y()+12),
+            QSize(fontRect.width() + 12, fontRect.height()+12));
+    painter->drawRoundedRect(textBackgroundRect, 4, 4);
 
     painter->restore();
 
-    QRect textRect(QPoint(points[1].x()+4, avatarRect.y()+18+6), QSize(fontRect.width(), fontRect.height()));
+    // textRect
+    QRect textRect(QPoint(textBackgroundRect.x()+6, textBackgroundRect.y()+6),
+            QSize(fontRect.width(), fontRect.height()));
     painter->drawText(textRect, Qt::TextWordWrap, msg.text);
+}
 
-    painter->setPen(Qt::red);
-    painter->drawRect(fontRect);
-    painter->drawRect(rect);
+void ChatItemDelegate::drawSentMessage(QPainter *painter, const QStyleOptionViewItem &option, const ChatMsg &msg) const
+{
+    const QRect rect = option.rect;
+    const QFontMetrics fm(painter->font());
+    const QRect fontRect = fm.boundingRect(QRect(rect.x(), rect.y(), rect.width()*0.6, rect.height()), Qt::AlignTop|Qt::AlignLeft|Qt::TextWordWrap, msg.text);
+
+    painter->setPen(Qt::black);
+
+    // avatarRect
+    QRect avatarRect(QPoint(rect.x()+rect.width()-52, rect.y()), QSize(35, 35));
+    painter->drawRect(avatarRect);
+
+    painter->save();
+    painter->setPen(Qt::NoPen);
+    painter->setBrush(QBrush(QColor("#9eea6e")));
+
+    // rectangle
+    QPoint points[3] = {
+        QPoint(avatarRect.left()-5, avatarRect.y()+avatarRect.height()/2),
+        QPoint(avatarRect.left()-5-6, avatarRect.y()+avatarRect.height()/2-6),
+        QPoint(avatarRect.left()-5-6, avatarRect.y()+avatarRect.height()/2+6),
+    };
+    painter->drawPolygon(points, 3);
+
+    QRect textBackgroundRect(QPoint(points[1].x() - fontRect.width() - 12, avatarRect.y()),
+            QSize(fontRect.width() + 12, fontRect.height()+12));
+    painter->drawRoundedRect(textBackgroundRect, 4, 4);
+
+    painter->restore();
+
+    // textRect
+    QRect textRect(QPoint(textBackgroundRect.x()+6, textBackgroundRect.y()+6),
+            QSize(fontRect.width(), fontRect.height()));
+    painter->drawText(textRect, Qt::TextWordWrap, msg.text);
 }

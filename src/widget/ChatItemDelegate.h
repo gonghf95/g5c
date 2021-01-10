@@ -19,6 +19,7 @@ protected:
 private:
     void drawSystemMessage(QPainter* painter, const QStyleOptionViewItem &option, const ChatMsg& msg) const;
     void drawReceivedMessage(QPainter* painter, const QStyleOptionViewItem &option, const ChatMsg& msg) const;
+    void drawSentMessage(QPainter* painter, const QStyleOptionViewItem &option, const ChatMsg& msg) const;
 };
 
 #endif // WIDGET_CHATITEMDELEGATE_H

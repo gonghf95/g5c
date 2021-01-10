@@ -25,7 +25,7 @@ Chat::Chat(QWidget *parent) : QListView(parent),
     QStandardItem* item2 = new QStandardItem();
     QVariant var2;
     msg2.msg_type = MSG_RECEIVED;
-    msg2.text = ".updateEditorGeometry()：确保上述组件作为编辑器时能够完整地显示出来。";
+    msg2.text = ".updateEditorGe确保上述组件作为编辑器时能够完整地显示出来。";
     var2.setValue(msg2);
     item2->setData(var2, Qt::UserRole);
 
@@ -53,19 +53,37 @@ Chat::Chat(QWidget *parent) : QListView(parent),
     var5.setValue(msg5);
     item5->setData(var5, Qt::UserRole);
 
+    ChatMsg msg6;
+    QStandardItem* item6 = new QStandardItem();
+    QVariant var6;
+    msg6.msg_type = MSG_SENT;
+    msg6.text = ".updateEditorGeome确保上述组件作为编辑器时能够完整地显示出来。";
+    var6.setValue(msg6);
+    item6->setData(var6, Qt::UserRole);
+
+    ChatMsg msg7;
+    QStandardItem* item7 = new QStandardItem();
+    QVariant var7;
+    msg7.msg_type = MSG_SENT;
+    msg7.text = "确保上述组件作为编辑器时能够完整地显示出来。";
+    var7.setValue(msg7);
+    item7->setData(var7, Qt::UserRole);
+
     QStandardItemModel* model = new QStandardItemModel(this);
     model->appendRow(item1);
     model->appendRow(item2);
     model->appendRow(item3);
     model->appendRow(item4);
     model->appendRow(item5);
+    model->appendRow(item6);
+    model->appendRow(item7);
 
     setModel(model);
     setItemDelegate(delegate_);
     setVerticalScrollMode(ScrollPerPixel);
     setStyleSheet(style);
     setVerticalScrollBar(scrollBar_);
-    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+//    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setSelectionMode(QAbstractItemView::NoSelection);
     setUniformItemSizes(false);
 }
